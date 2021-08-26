@@ -1,5 +1,5 @@
 # vanilla-js-courusel-pr
-Casinos carousel with information about casinos
+Vanilla JS Carousel (example site with information about casinos)
 
 # Live preview
 https://testtaskshop.netlify.app
