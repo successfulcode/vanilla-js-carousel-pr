@@ -4,6 +4,8 @@ Vanilla JS Carousel (example site with information about casinos)
 # Live preview
 https://testtaskshop.netlify.app
 
+![casions](https://user-images.githubusercontent.com/56683358/131036288-76bb9e6a-8dc2-4ca5-860d-d1429d17c46a.jpg)
+
 ## Available Scripts
 
 In the project directory, you can run:
