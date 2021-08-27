@@ -1,15 +1,19 @@
 import './styles/app';
+import axios from 'axios';
 import Title from './components/Title';
 import Spinner from './components/Spinner';
 import CasinosItem from './components/CasinosItem';
-import axios from 'axios';
 import ErrorMessage from './components/ErrorMessage';
+// import Navigation from './components/Navigation';
 
 const appItem = document.getElementById('app');
 const carouselArea = appItem.querySelector('.carousel');
 const titleItem = appItem.querySelector('.title');
 const incrementButton = appItem.querySelector('.increment-button');
 const decrementButton = appItem.querySelector('.decrement-button');
+const casinosNavButton = appItem.querySelector('.navigation__block-casinos');
+const bonusesNavButton = appItem.querySelector('.navigation__block-bonuses');
+const slotsNavButton = appItem.querySelector('.navigation__block-slots');
 
 let casinos = [];
 let casinosInHtml;
@@ -77,6 +81,35 @@ const decrement = () => {
 
 incrementButton.addEventListener('click', increment);
 decrementButton.addEventListener('click', decrement);
+
+const toggleCasinoNavigation = () => {
+  casinosNavButton.classList.add('navigation__block-item--active');
+  slotsNavButton.classList.remove('navigation__block-item--active');
+  bonusesNavButton.classList.remove('navigation__block-item--active');
+  carouselArea.innerHTML = casinosInHtml;
+  incrementButton.style.display = 'block';
+  decrementButton.style.display = 'block';
+};
+const toggleBonusesNavigation = () => {
+  bonusesNavButton.classList.add('navigation__block-item--active');
+  casinosNavButton.classList.remove('navigation__block-item--active');
+  slotsNavButton.classList.remove('navigation__block-item--active');
+  carouselArea.innerHTML = `<h1>Bonuses</h1>`;
+  incrementButton.style.display = 'none';
+  decrementButton.style.display = 'none';
+};
+const toggleSlotsNavigation = () => {
+  slotsNavButton.classList.add('navigation__block-item--active');
+  casinosNavButton.classList.remove('navigation__block-item--active');
+  bonusesNavButton.classList.remove('navigation__block-item--active');
+  carouselArea.innerHTML = `<h1>Slots</h1>`;
+  incrementButton.style.display = 'none';
+  decrementButton.style.display = 'none';
+};
+
+casinosNavButton.addEventListener('click', toggleCasinoNavigation);
+bonusesNavButton.addEventListener('click', toggleBonusesNavigation);
+slotsNavButton.addEventListener('click', toggleSlotsNavigation);
 
 const getCasinos = async () => {
   try {
