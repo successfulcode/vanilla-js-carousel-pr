@@ -1,0 +1,61 @@
+@import './variables';
+
+.casino {
+  width: 16.875rem;
+  height: 20rem;
+  margin: 0.3rem;
+
+  &__firstblock {
+    background-color: $block-background-color;
+    height: 9.375rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  &__firstblock-img {
+    width: 8rem;
+    height: auto;
+  }
+
+  &__secondblock {
+    background-color: $block-background-color;
+    height: 10.625rem;
+    margin-top: 1px;
+    display: flex;
+    justify-content: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+    // overflow: hidden;
+  }
+
+  &__secondblock-button {
+    background-color: $casino-button-background;
+    color: $casino-button-text;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__secondblock-title {
+    color: $main-text-color;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    padding: 0 5px;
+  }
+
+  &__secondblock-rating {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  &__secondblock-rating-star {
+    color: $green-color;
+  }
+}

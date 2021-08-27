@@ -4,12 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="shortcut icon" href="./logo.png" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -17,6 +12,22 @@
     <title>Vanilla JS</title>
   </head>
   <body>
+    <div id="app">
+      <div class="title"></div>
+      <div class="carousel-wraper">
+        <div class="toggle-button">
+          <button class="increment-button">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="carousel"></div>
+        <div class="toggle-button">
+          <button class="decrement-button">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </div>
+      </div>
+    </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script src="../src/app.js"></script>
   </body>

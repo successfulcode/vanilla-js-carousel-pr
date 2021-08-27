@@ -1,0 +1,17 @@
+@import './variables';
+
+.title {
+  color: $main-text-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2rem;
+  &__main {
+    color: $main-text-color;
+  }
+  &__description {
+    color: $description-color;
+    margin-top: 0.5rem;
+  }
+}
