@@ -1,0 +1,43 @@
+@import './variables';
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+
+  &__block {
+    background-color: $navigation-background;
+    width: 32.938rem;
+
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+  }
+  &__block-casinos {
+    cursor: pointer;
+    width: 10.98rem;
+    text-align: center;
+    padding: 0.5rem;
+    margin: 2px;
+    border-radius: 5px;
+  }
+  &__block-bonuses {
+    cursor: pointer;
+    width: 10.98rem;
+    text-align: center;
+    padding: 0.5rem;
+    margin: 2px;
+    border-radius: 5px;
+  }
+  &__block-slots {
+    cursor: pointer;
+    width: 10.98rem;
+    text-align: center;
+    padding: 0.5rem;
+    margin: 2px;
+    border-radius: 5px;
+  }
+  &__block-item--active {
+    background-color: $block-background-color;
+  }
+}
