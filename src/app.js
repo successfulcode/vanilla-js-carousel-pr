@@ -1,6 +1,6 @@
 import './styles/app';
 import Title from './components/Title';
-import Spinner from './components/spinner';
+import Spinner from './components/Spinner';
 import CasinosItem from './components/CasinosItem';
 import axios from 'axios';
 import ErrorMessage from './components/ErrorMessage';
