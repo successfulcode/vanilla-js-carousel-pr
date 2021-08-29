@@ -1,4 +1,4 @@
-@import './variables';
+@import './_variables';
 
 .title {
   color: $main-text-color;
@@ -7,6 +7,7 @@
   justify-content: center;
   text-align: center;
   margin-top: 2rem;
+  padding: 0.5rem;
   &__main {
     color: $main-text-color;
   }

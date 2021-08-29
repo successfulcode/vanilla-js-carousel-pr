@@ -1,0 +1,125 @@
+@import './_variables';
+
+.casino {
+  width: 16.875rem;
+  height: 20rem;
+  margin: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &__firstblock {
+    background-color: $block-background-color;
+    height: 9.375rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  &__firstblock-img {
+    width: 8rem;
+    height: auto;
+  }
+
+  &__secondblock {
+    background-color: $block-background-color;
+    height: 10.625rem;
+    margin-top: 2px;
+    display: flex;
+    justify-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  &__secondblock-button {
+    background-color: $casino-button-background;
+    color: $link-text;
+    padding: 0.5rem 2rem;
+    margin-top: 2rem;
+    border: none;
+    cursor: pointer;
+    transition: ease-out 0.3s;
+    border-radius: 5px;
+  }
+
+  &__secondblock-button:hover {
+    background-color: $link-text;
+    color: $casino-button-background;
+  }
+
+  &__secondblock-title {
+    color: $main-text-color;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    padding: 0 5px;
+  }
+
+  &__secondblock-rating {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  &__secondblock-rating-star {
+    color: $green-color;
+  }
+
+  &__show-all {
+    height: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  @media only screen and (max-width: 768px) {
+    &__secondblock-title {
+      font-size: 0.7rem;
+    }
+    &__firstblock-img {
+      width: 5rem;
+      height: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .casino {
+    width: 7.875rem;
+    height: auto;
+    &__firstblock {
+      height: 6.375rem;
+    }
+    &__secondblock {
+      height: 6.625rem;
+    }
+    &__secondblock-rating {
+      margin-top: 0.2rem;
+      font-size: 0.7rem;
+    }
+    &__secondblock-button {
+      background-color: $casino-button-background;
+      color: $link-text;
+      padding: 0.5rem rem;
+      margin-top: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    &__secondblock-title {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media only screen and (max-width: 420px) {
+    .casino {
+      width: 6.875rem;
+      height: auto;
+    }
+  }
+
+  @media only screen and (max-width: 280px) {
+    .casino {
+      width: 5.875rem;
+    }
+  }
+}

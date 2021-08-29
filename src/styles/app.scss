@@ -1,9 +1,10 @@
-@import './variables.scss';
+@import './_variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import './Spinner';
-@import './CasinosItem';
+@import './CasinoItem';
 @import './Title';
 @import './Navigation';
+@import './ErrorMessage';
 
 * {
   margin: 0;
@@ -20,15 +21,24 @@ body {
 .carousel-wraper {
   display: flex;
   justify-content: center;
+  max-width: 100%;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .carousel {
   display: flex;
   justify-content: center;
   text-align: center;
-  height: 21rem;
+  max-width: 100%;
+  min-height: 21rem;
+}
+
+@media only screen and (max-width: 560px) {
+  .carousel {
+    flex-wrap: wrap;
+    height: auto;
+  }
 }
 
 .toggle-button {
@@ -40,28 +50,46 @@ body {
 
 .increment-button {
   font-size: 1rem;
-  color: #262a2d;
+  color: $toggle-button-text-color;
   border-radius: 50%;
   padding: 5px;
   width: 40px;
   height: 40px;
   border: none;
   cursor: pointer;
-  background-color: #ffffff;
-  box-shadow: 1px 1px 3px #888888;
-  margin-right: -25px;
+  background-color: $block-background-color;
+  box-shadow: 1px 1px 3px $shadow-color;
+  margin-left: -25px;
 }
 
 .decrement-button {
   font-size: 1rem;
-  color: #262a2d;
+  color: $toggle-button-text-color;
   border-radius: 50%;
   padding: 5px;
   width: 40px;
   height: 40px;
   border: none;
   cursor: pointer;
-  background-color: #ffffff;
-  box-shadow: 1px 1px 3px #888888;
-  margin-left: -25px;
+  background-color: $block-background-color;
+  box-shadow: 1px 1px 3px $shadow-color;
+  margin-right: -25px;
+}
+
+.counter-link {
+  color: $link-text;
+  text-align: center;
+  margin-top: 0.2rem;
+  cursor: pointer;
+  :hover {
+    color: $link-text-hover;
+  }
+}
+
+.not-avaible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  max-width: 50rem;
 }

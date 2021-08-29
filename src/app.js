@@ -2,9 +2,10 @@ import './styles/app';
 import axios from 'axios';
 import Title from './components/Title';
 import Spinner from './components/Spinner';
-import CasinosItem from './components/CasinosItem';
+import CasinoItem from './components/CasinoItem';
 import ErrorMessage from './components/ErrorMessage';
-// import Navigation from './components/Navigation';
+import Slots from './components/Slots';
+import Bonuses from './components/Bonuses';
 
 const appItem = document.getElementById('app');
 const carouselArea = appItem.querySelector('.carousel');
@@ -14,26 +15,66 @@ const decrementButton = appItem.querySelector('.decrement-button');
 const casinosNavButton = appItem.querySelector('.navigation__block-casinos');
 const bonusesNavButton = appItem.querySelector('.navigation__block-bonuses');
 const slotsNavButton = appItem.querySelector('.navigation__block-slots');
+const counterLink = document.querySelector('.counter-link');
+
+const CASINO_ITEMS_PER_PAGE_LENGTH = 5;
 
 let casinos = [];
-let casinosInHtml;
-const itemsPerPage = 5;
+
 let firstIndex = 0;
-let lastIndex = firstIndex + itemsPerPage;
+let lastIndex = firstIndex + CASINO_ITEMS_PER_PAGE_LENGTH;
 
-const setCasinos = (data) => {
-  casinos = data;
+const displayTitle = () => {
+  titleItem.innerHTML = Title();
 };
 
-const setCasinosInHtml = (casinos) => {
-  casinosInHtml = casinos;
+const displayError = () => {
+  carouselArea.innerHTML = ErrorMessage();
 };
 
-const showItems = (firstIndex = 0, lastIndex = 5) => {
-  const template = casinos
-    .slice(firstIndex, lastIndex)
+const displayLoading = () => {
+  incrementButton.style.display = 'none';
+  decrementButton.style.display = 'none';
+
+  carouselArea.innerHTML = Spinner();
+};
+
+const switchButton = (button, hide = false) => {
+  if (!hide) {
+    button.style.display = 'none';
+  } else {
+    button.style.display = 'block';
+  }
+};
+
+const displayIncrementButton = () => {
+  if (
+    firstIndex + CASINO_ITEMS_PER_PAGE_LENGTH === casinos.length ||
+    casinos.length == 0
+  ) {
+    switchButton(incrementButton, false);
+  } else {
+    switchButton(incrementButton, true);
+  }
+};
+
+const displayDecrementButton = () => {
+  if (firstIndex === 0 || casinos.length <= 0) {
+    switchButton(decrementButton, false);
+  } else {
+    switchButton(decrementButton, true);
+  }
+};
+
+const removeDisplayAllCasinosMode = () => {
+  carouselArea.classList.remove('casino__show-all');
+};
+
+const displayCasinos = (casinosItems) => {
+  removeDisplayAllCasinosMode();
+  const casinosHtml = casinosItems
     .map((casino) => {
-      return CasinosItem(
+      return CasinoItem(
         casino.background_color,
         casino.logo,
         casino.rating,
@@ -42,97 +83,127 @@ const showItems = (firstIndex = 0, lastIndex = 5) => {
       );
     })
     .join('');
-  setCasinosInHtml(template);
-  if (firstIndex === 0 || casinos.length <= 0) {
-    decrementButton.style.display = 'none';
-  } else {
-    decrementButton.style.display = 'block';
-  }
-  if (firstIndex + itemsPerPage === casinos.length || casinos.length == 0) {
-    incrementButton.style.display = 'none';
-  } else {
-    incrementButton.style.display = 'block';
-  }
+
+  carouselArea.innerHTML = casinosHtml;
+  counterLink.innerHTML = `<span>Show all(${casinos.length})</span>`;
+  displayIncrementButton();
+  displayDecrementButton();
 };
 
-const showLastIndex = () => {
-  lastIndex = firstIndex + itemsPerPage;
+const displayAllcasinos = () => {
+  displayCasinos(casinos);
+
+  switchButton(incrementButton, false);
+  switchButton(decrementButton, false);
+  carouselArea.classList.add('casino__show-all');
+  counterLink.innerHTML = '';
+};
+
+const setCasinos = (data) => {
+  casinos = data;
+};
+
+const moveCarousel = (condition) => {
+  if (condition) {
+    displayCasinos(casinos.slice(firstIndex, lastIndex));
+  }
+
+  displayIncrementButton();
+};
+
+const setLastIndex = () => {
+  lastIndex = firstIndex + CASINO_ITEMS_PER_PAGE_LENGTH;
 };
 
 const increment = () => {
-  if (firstIndex + itemsPerPage < casinos.length) {
-    incrementButton.style.display = 'block';
+  const condition = firstIndex + CASINO_ITEMS_PER_PAGE_LENGTH < casinos.length;
+  if (condition) {
     firstIndex++;
-    showLastIndex();
-    showItems(firstIndex, lastIndex);
-    carouselArea.innerHTML = casinosInHtml;
+    setLastIndex();
   }
+
+  moveCarousel(condition);
 };
 
 const decrement = () => {
-  if (firstIndex > 0) {
-    decrementButton.style.display = 'block';
+  const condition = firstIndex > 0;
+  if (condition) {
     firstIndex--;
-    showLastIndex();
-    showItems(firstIndex, lastIndex);
-    carouselArea.innerHTML = casinosInHtml;
+    setLastIndex();
   }
+
+  moveCarousel(condition);
 };
 
 incrementButton.addEventListener('click', increment);
 decrementButton.addEventListener('click', decrement);
 
-const toggleCasinoNavigation = () => {
+const toggleCasinosNavigation = () => {
   casinosNavButton.classList.add('navigation__block-item--active');
   slotsNavButton.classList.remove('navigation__block-item--active');
   bonusesNavButton.classList.remove('navigation__block-item--active');
-  carouselArea.innerHTML = casinosInHtml;
-  incrementButton.style.display = 'block';
-  decrementButton.style.display = 'block';
+
+  if (casinos.length > 0) {
+    displayCasinos(casinos.slice(0, CASINO_ITEMS_PER_PAGE_LENGTH));
+  } else {
+    displayError();
+  }
 };
+
 const toggleBonusesNavigation = () => {
   bonusesNavButton.classList.add('navigation__block-item--active');
   casinosNavButton.classList.remove('navigation__block-item--active');
   slotsNavButton.classList.remove('navigation__block-item--active');
-  carouselArea.innerHTML = `<h1>Bonuses</h1>`;
-  incrementButton.style.display = 'none';
-  decrementButton.style.display = 'none';
+
+  carouselArea.innerHTML = Bonuses();
+  counterLink.innerHTML = '';
+  removeDisplayAllCasinosMode();
+  switchButton(incrementButton, false);
+  switchButton(decrementButton, false);
 };
+
 const toggleSlotsNavigation = () => {
   slotsNavButton.classList.add('navigation__block-item--active');
   casinosNavButton.classList.remove('navigation__block-item--active');
   bonusesNavButton.classList.remove('navigation__block-item--active');
-  carouselArea.innerHTML = `<h1>Slots</h1>`;
-  incrementButton.style.display = 'none';
-  decrementButton.style.display = 'none';
+
+  carouselArea.innerHTML = Slots();
+  counterLink.innerHTML = '';
+  removeDisplayAllCasinosMode();
+  switchButton(incrementButton, false);
+  switchButton(decrementButton, false);
 };
 
-casinosNavButton.addEventListener('click', toggleCasinoNavigation);
+casinosNavButton.addEventListener('click', toggleCasinosNavigation);
 bonusesNavButton.addEventListener('click', toggleBonusesNavigation);
 slotsNavButton.addEventListener('click', toggleSlotsNavigation);
+counterLink.addEventListener('click', displayAllcasinos);
 
-const getCasinos = async () => {
+const fetchCasinos = async () => {
   try {
+    displayLoading();
+
     const { data, status } = await axios.get(
       'https://retoolapi.dev/RrRljN/casinos'
     );
+
     if (data && status === 200) {
       setCasinos(data);
-      showItems();
-      carouselArea.innerHTML = casinosInHtml;
+      displayCasinos(data.slice(0, CASINO_ITEMS_PER_PAGE_LENGTH));
+    } else {
+      throw new Error('Could not fetch casinos');
     }
   } catch (error) {
-    carouselWraper.innerHTML = ErrorMessage();
     console.log(error);
+
+    displayError();
   }
 };
 
 const app = async () => {
-  titleItem.innerHTML = Title();
-  incrementButton.style.display = 'none';
-  decrementButton.style.display = 'none';
-  carouselArea.innerHTML = Spinner();
-  await getCasinos();
+  displayTitle();
+
+  await fetchCasinos();
 };
 
 app();
