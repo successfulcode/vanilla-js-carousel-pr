@@ -1,43 +1,51 @@
-@import './variables';
+@import './_variables';
 
 .navigation {
   display: flex;
   justify-content: center;
   margin: 1rem;
-
   &__block {
     background-color: $navigation-background;
-    width: 32.938rem;
-
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
   }
-  &__block-casinos {
-    cursor: pointer;
-    width: 10.98rem;
-    text-align: center;
-    padding: 0.5rem;
-    margin: 2px;
-    border-radius: 5px;
-  }
-  &__block-bonuses {
-    cursor: pointer;
-    width: 10.98rem;
-    text-align: center;
-    padding: 0.5rem;
-    margin: 2px;
-    border-radius: 5px;
-  }
+  &__block-casinos,
+  &__block-bonuses,
   &__block-slots {
     cursor: pointer;
     width: 10.98rem;
     text-align: center;
     padding: 0.5rem;
-    margin: 2px;
+    margin: 1px;
     border-radius: 5px;
+    transition: ease-out 0.2s;
   }
   &__block-item--active {
     background-color: $block-background-color;
+  }
+  @media only screen and (max-width: 768px) {
+    &__block {
+      max-width: 100%;
+    }
+    &__block-casinos,
+    &__block-bonuses,
+    &__block-slots {
+      width: 9rem;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    &__block {
+      flex-wrap: wrap;
+      flex-direction: column;
+      font-size: 0.8rem;
+    }
+  }
+  @media only screen and (max-width: 290px) {
+    &__block-casinos,
+    &__block-bonuses,
+    &__block-slots {
+      width: 8rem;
+    }
   }
 }

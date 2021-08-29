@@ -1,0 +1,12 @@
+.error-message {
+  color: $error-color;
+  img {
+    margin-top: 1rem;
+    width: 15rem;
+    height: auto;
+  }
+  p {
+    opacity: 0.4;
+    font-size: 1.2rem;
+  }
+}
