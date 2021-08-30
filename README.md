@@ -4,7 +4,7 @@ Vanilla JS Carousel (example site with information about casinos)
 # Live preview
 https://casinos.netlify.app
 
-![2021-08-27_22-57-30](https://user-images.githubusercontent.com/56683358/131182128-53a584aa-4258-4198-9684-83b1a2ba2275.jpg)
+![casinos2](https://user-images.githubusercontent.com/56683358/131294418-d1d4c848-1525-49c1-87ec-58c251057cd1.png)
 
 ## Available Scripts
 
