@@ -1,4 +1,4 @@
-# vanilla-js-courusel-pr
+# vanilla-js-carousel-pr
 Vanilla JS Carousel (example site with information about casinos)
 
 # Live preview
